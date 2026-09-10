@@ -8,8 +8,6 @@ Notes:
   geometric parameter used in turbofan sizing models.
 - Some values are family-level placeholders because publicly available data is
   usually published at engine-family level rather than every exact ICAO variant.
-- Where an exact public value was not confidently available, the value is left
-  as None so you can fill it manually.
 - Duplicate engine rows with same engine name but different BPR/OPR/thrust are
   kept as suffixed keys like "NAME__2".
 """
@@ -991,7 +989,7 @@ def build_define_engine_kwargs(engine_name, fbpr=None, use_opr_as_cpr=True, incl
     engine_name : str
         Key present in icao_data.
     fbpr : float | None
-        Fan bypass ratio or user placeholder if your define_engine needs it.
+        Fan bypass ratio or user placeholder if define_engine needs it.
     use_opr_as_cpr : bool
         If True, uses ICAO overall pressure ratio as CPR.
     include_diameter : bool
