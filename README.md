@@ -52,7 +52,7 @@ These modules contain helper functions used to process, organise and visualise t
 
 ### Requirements
 
-The code requires Python 3.x and the packages listed in `requirements.txt`.
+The code requires Python 3.11.14 and the packages listed in `requirements.txt`.
 
 Install the required packages with:
 
