@@ -1,3 +1,10 @@
+"""
+Main entry point for turbofan emissions analysis.
+
+This script runs the emissions calculations and generates the
+corresponding emissions results and visualisations.
+"""
+
 """This script shows BPR-grouped fuel-burn and emissions summaries results for some chosen engines. (can change to all engines cf line 98)
 
 This script keeps ONE final printed view grouped by BPR, containing:
