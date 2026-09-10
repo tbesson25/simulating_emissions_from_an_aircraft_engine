@@ -1,4 +1,4 @@
-#Calculate engine areas from a chosen design point (here: beginning of cruise?)
+#Calculate engine areas from a chosen design point (beginning of cruise)
 
 # engine_areas.py
 
