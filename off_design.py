@@ -87,17 +87,12 @@ def run_cumpsty_off_design(
   LCV = engine["LCV"] 
   
     
-  #f = (Cpt*(1-khp)*T04_off-Cpc*T023)/(LCV+Cpt*khp*T04_off)
-
-    
   # Station 03 - HPC
   T03 = (
       khp * T04_off * (Cpt/ Cpc)
       + T023
   )
   f = Cp * (T04_off - T03) / LCV
-  #f = (Cpt*T04_off - Cpc*T03) / LCV
-  #f = (Cpt (T04_off-298)-Cpc*(T03-298))/(LCV-Cpt*(T04_off-298))
     
   HPCPR = (
       etaC * ((T03 / T023) - 1) + 1
@@ -108,8 +103,6 @@ def run_cumpsty_off_design(
 
   # Station 04
   P04 = P03
-
-
     
   # Station 45 - HPT
   T045 = T04_off * (1 - khp)
@@ -201,7 +194,6 @@ def run_cumpsty_off_design(
       T05,
       Cpn
   )
-  #Thrust_off = mass_flow_core_A9 * ST_off
   mass_flow_air = mass_flow_core_A9 * (1+BPR)
   Thrust_off = mass_flow_air * ST_off    
   fuel_mass_flow = f * mass_flow_core_A9
