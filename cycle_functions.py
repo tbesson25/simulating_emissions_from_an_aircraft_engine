@@ -70,7 +70,7 @@ def calculate_cycle_efficiency(etaT, etaC, T04, T03,T02, r, gamma):
     n_cy = (
         etaT * T04 * (1 - r ** ((1 - gamma) / gamma))
         - ((1 / etaC) * (T02 * (r ** ((gamma - 1) / gamma) - 1)))
-    ) / (T04 - T03)  # ok #cumpsty eq derivation
+    ) / (T04 - T03)  #cumpsty eq derivation
     return n_cy
 
 
@@ -87,7 +87,7 @@ def calculate_thermal_efficiency_2stream(f, u_e, u_ef, u,BPR,QR):
         * (((1 + f) * (u_e**2)) + (BPR * (u_ef**2)) - ((1 + BPR) * (u**2)))
         / (f * QR)
     )
-    return n_th  # juste, turbofan, consistent
+    return n_th  
 
 
 # Overall efficiency definition from th x p
@@ -186,9 +186,6 @@ def nozzle_area_calculation(name,P0in,T0in,Pout,mass_flow,gamma,Cp,calculate_exi
 def calculate_mass_flow_rate_from_area(area, norm_m, P0, T0, Cp):
   mass_flow_rate = (area * norm_m * P0) / ((Cp * T0) ** 0.5)
   return mass_flow_rate
-
-##### method copied in main
-#####
 
 def calculate_nozzle_normalised_mass_flow(P0in, P0out, gamma):
   pressure_ratio = P0in / P0out
