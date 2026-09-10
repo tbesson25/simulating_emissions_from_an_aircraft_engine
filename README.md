@@ -1,8 +1,8 @@
 # Turbofan Cycle Analysis and Emissions Modelling
 
-Python code developed for an MSc research project in Advanced Aeronautical Engineering at Imperial College London.
+Python-based turbofan engine performance and emissions modelling framework developed as part of an MSc research project in Advanced Aeronautical Engineering at Imperial College London.
 
-The project focuses on turbofan cycle analysis, engine performance and off-design modelling, fuel-flow prediction, and emissions analysis. Model results are compared with available ICAO reference data and further evaluated using statistical analysis.
+The model provides a modular framework for turbofan cycle analysis, operating-point and off-design simulations, fuel-flow prediction, emissions analysis, and comparison with ICAO reference data. Results can be analysed across multiple engine configurations and visualised through dedicated plotting and results-processing modules.
 
 ## Main scripts
 
@@ -18,7 +18,7 @@ The remaining Python files contain the functions, engine data and supporting cal
 
 ### Cycle model
 
-* `cumpsty_cycle.py` – turbofan cycle calculations based on the Cumpsty approach.
+* `cycle.py` – turbofan cycle calculations.
 * `cycle_functions.py` – common thermodynamic and cycle calculation functions.
 
 ### Engine data
