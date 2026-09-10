@@ -4,6 +4,21 @@ Python-based turbofan engine performance and emissions modelling framework devel
 
 The model provides a modular framework for turbofan cycle analysis, operating-point and off-design simulations, fuel-flow prediction, emissions analysis, and comparison with ICAO reference data. Results can be analysed across multiple engine configurations and visualised through dedicated plotting and results-processing modules.
 
+## Project Overview
+
+The objective of the project is to develop a Python-based turbofan model capable of:
+
+* modelling turbofan thermodynamic cycles;
+* evaluating engine performance at different operating conditions;
+* performing off-design simulations;
+* estimating fuel mass flow and related performance quantities;
+* analysing aircraft-engine emissions;
+* comparing model predictions with ICAO reference data;
+* evaluating model accuracy using statistical analysis; and
+* generating plots and tables for analysis and reporting.
+
+The code is organised into modular components for engine definition, thermodynamic calculations, operating-point simulations, off-design modelling, data handling, and results visualisation.
+
 ## Main scripts
 
 There are three main scripts used to run the different parts of the analysis:
@@ -60,13 +75,14 @@ Install the required packages with:
 pip install -r requirements.txt
 ```
 
-### Main results and plots
+### Performance simulations and plots
 
 Run:
 
 ```bash
 python main_results_plots.py
 ```
+This is the main entry point for running the performance simulations and generating the associated plots and results.
 
 ### Emissions analysis
 
@@ -75,6 +91,7 @@ Run:
 ```bash
 python main_results_emissions.py
 ```
+This runs the emissions-related calculations and generates the corresponding results and visualisations.
 
 ### Statistical analysis
 
@@ -83,8 +100,7 @@ Run:
 ```bash
 python main_results_statistics.py
 ```
-
-The engine configurations, operating points and other model inputs are defined in the corresponding Python modules.
+This performs the statistical analysis used to evaluate the model results and their agreement with the reference data.
 
 ## Model workflow
 
@@ -110,19 +126,63 @@ Comparison with ICAO reference data
 Results, plots and statistical analysis
 ```
 
-Not every step is necessarily used by every analysis script.
+## Model Components
+
+### Turbofan cycle analysis
+
+The model includes thermodynamic calculations for the main turbofan engine stations and components, including the fan, compressor, combustor, turbines and nozzles.
+
+The cycle model uses the relevant thermodynamic and component performance parameters to calculate engine performance quantities under the specified operating conditions.
+
+### Operating-point analysis
+
+The model can evaluate engine performance at defined operating points representing different flight or engine conditions.
+
+### Off-design analysis
+
+An off-design modelling framework is included to evaluate engine behaviour away from the design condition.
+
+The off-design calculation includes a simultaneous solution involving fan pressure ratio and turbine inlet temperature, together with the associated numerical solver.
+
+### Emissions analysis
+
+The model estimates emissions-related quantities and allows the results to be compared with available ICAO reference data.
+
+### Statistical analysis
+
+Statistical analysis is used to quantify the agreement between model predictions and reference data.
+
+## Reference Data
+
+The repository contains engine and ICAO reference datasets used for model development and validation.
+
+Where reference data are unavailable, additional engine data or assumptions may be required. These cases are handled through dedicated data modules.
+
+The assumptions and data sources used in the model are described in greater detail in the associated MSc project report.
 
 ## Results
 
-The code produces engine performance and fuel-flow results, emissions-related results, comparisons with ICAO reference data, mission-level results, plots, tables and statistical analysis.
+The model produces:
 
-The exact results produced depend on the main script being run and the selected engine configurations and operating conditions.
+* engine performance results;
+* fuel-flow predictions;
+* emissions-related results;
+* comparisons with ICAO reference data;
+* multi-engine comparisons;
+* mission-level results;
+* statistical validation metrics;
+* plots; and
+* results tables.
+
+The `results_*_helpers.py` modules provide supporting functions for processing and visualising these results.
 
 ## Project context
 
-This code was developed as part of an MSc research project in Advanced Aeronautical Engineering at Imperial College London.
+This repository contains code developed as part of an MSc research project in Advanced Aeronautical Engineering at Imperial College London.
 
-For the theoretical background, modelling assumptions, methodology and detailed discussion of the results, please refer to the associated MSc project report.
+The project focuses on turbofan engine performance and emissions modelling, with particular emphasis on the development of a Python-based computational framework and validation against available reference data.
+
+For a detailed description of the theoretical background, modelling assumptions, methodology and results, please refer to the associated project report.
 
 ## Author
 
@@ -130,3 +190,8 @@ For the theoretical background, modelling assumptions, methodology and detailed 
 
 MSc Advanced Aeronautical Engineering
 Imperial College London
+
+## Disclaimer
+
+This software was developed for academic and research purposes. Engine parameters, reference data and modelling assumptions may rely on publicly available information and engineering approximations. The results should therefore not be interpreted as representing proprietary engine models or manufacturer-certified performance data.
+
