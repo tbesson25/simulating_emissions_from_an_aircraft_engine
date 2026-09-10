@@ -119,7 +119,7 @@ engines = {
 # ============================================================
 from operating_points import operating_points
 from operating_points_simulation import simulate_operating_points
-from cumpsty_cycle import run_cumpsty_cycle
+from cycle import run_cumpsty_cycle
 from engine_areas import calculate_engine_areas
 
 
