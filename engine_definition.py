@@ -3,15 +3,14 @@ This file gives:
 1. define_all_engines(define_engine): returns a dictionary of engine objects
    keyed by ICAO engine name.
 2. build_engines_config(engine_objects, default_conditions=None, t04_map=None):
-   builds your main `engines = {...}` structure.
-3. ICAO_fuel_flow extracted in the same shape as your original workflow.
-4. compute_lto_fuel_burn_percent_difference(...): same calculation pattern you
-   were already using, but extended to all engines.
+   builds the main `engines = {...}` structure.
+3. ICAO_fuel_flow extracted in the same shape as original workflow.
+4. compute_lto_fuel_burn_percent_difference(...): calculation pattern extended to all engines.
 
 Notes:
 - FPR and FBPR are engineering defaults/estimates, not ICAO-certified values.
 - Diameter values are family/public-reference values where available, otherwise
-  reasonable placeholders so your code can run.
+  reasonable placeholders so the code can run.
 - Duplicate ICAO rows with same engine name but different BPR/OPR/thrust are
   kept as suffixed keys like NAME__2.
 """
