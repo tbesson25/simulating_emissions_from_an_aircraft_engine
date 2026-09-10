@@ -65,22 +65,6 @@ icao_data.update(missing_icao_data)
 engine_diameter_m.update(engine_diameter_m_missing)
 engine_cycle_defaults.update(engine_cycle_defaults_missing)
 ####
-'''    "PW4x62": 1500,
-    "D-36 ser. 4A": 1500,
-    "CFM56-7B27AE": 1500,
-    "CFM56-7B26E": 1500,
-    "CF34-10A16/B/C/D": 1500,
-     "CF34-10A16": 1500,
-    "CF34-10A16/16-B": 1500,
-    "GEnx-2B67/P": 1600,
-    "LEAP-1B28BBJ1":1500,
-    "LEAP-1B28BBJ2":1500,
-    "LEAP-1B27":1500,
-    "LEAP-1B28B2C":1500,
-    "LEAP-1B28/28B2/28B1/28B3":1500,
-    "LEAP-1B25":1800,
-    "LEAP-1B23":1800,
-    "GEnx-1B76/P2":1700,'''
 
 all_engine_objects = define_all_engines(define_engine)
 
