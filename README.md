@@ -189,6 +189,7 @@ For a detailed description of the theoretical background, modelling assumptions,
 **Thanyamone Besson**
 
 MSc Advanced Aeronautical Engineering
+
 Imperial College London
 
 ## Disclaimer
