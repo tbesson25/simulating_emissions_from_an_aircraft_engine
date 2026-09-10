@@ -1,4 +1,4 @@
-"""This script shows BPR-grouped fuel-burn and emissions summaries results for some chosen engines.
+"""This script shows BPR-grouped fuel-burn and emissions summaries results for some chosen engines. (can change to all engines cf line 98)
 
 This script keeps ONE final printed view grouped by BPR, containing:
 - metadata rows
@@ -66,7 +66,6 @@ engine_cycle_defaults.update(engine_cycle_defaults_missing)
 
 
 all_engine_objects = define_all_engines(define_engine)
-
 custom_t04 = {
     "CFM56-5B1/3": 1400,
     "CFM56-5B9/3": 1500,
@@ -76,6 +75,9 @@ custom_t04 = {
     "PW307A": 1400,
     "Trent 970-84": 1500,
     "GE90-115B__2": 1700,
+    "GE90-115B": 1700,
+    "GE90-110B1": 1700,
+    "GE90-110B1__2": 1700,
     "GEnx-2B67/P":1500,
     "Trent XWB-97":1500,
     "LEAP-1B28BBJ1":1400,
@@ -93,7 +95,7 @@ custom_t04 = {
 }
 engines = build_engines_config(all_engine_objects, t04_map=custom_t04)
 
-# Select only the engines to simulate (Remove lines 97-107 if want to see all engines)
+# Select only the engines to simulate (Remove lines 99-109 if want to see all engines)
 selected_engines = [
     "CFM56-5B1/3",
     "GE90-115B",
