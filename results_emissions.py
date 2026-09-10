@@ -1,4 +1,4 @@
-"""Final single-workflow script for BPR-grouped fuel-burn and emissions summaries.
+"""This script shows BPR-grouped fuel-burn and emissions summaries results for some chosen engines.
 
 This script keeps ONE final printed view grouped by BPR, containing:
 - metadata rows
@@ -32,10 +32,8 @@ You already have these available in your project:
 - mission_emissions_helpers:
     * run_mission_emissions_for_all_engines
     * build_mission_emissions_summary_df
-
-Important
----------
-All printed results are grouped by BPR. This is the ONLY final printed table.
+    
+All printed results are grouped by BPR.
 """
 
 from __future__ import annotations
@@ -69,33 +67,6 @@ engine_cycle_defaults.update(engine_cycle_defaults_missing)
 
 all_engine_objects = define_all_engines(define_engine)
 
-'''
-custom_t04 = {
-    "CFM56-5B1/3": 1400,
-    "CFM56-7B20E": 1400,
-    "GE90-115B": 1700,
-    "PW307A": 1400,
-    "Trent 970-84": 1500,
-    "GE90-115B__2": 1700,
-    "GEnx-2B67/P": 1500,
-    "Trent XWB-97": 1500,
-}'''
-'''
-custom_t04 = {
-    "CFM56-5B1/3": 1400,
-    "CFM56-5B9/3": 1500,
-    "CFM56-7B20E": 1400,
-    "GE90-115B": 1700,
-    "GE90-110B1": 1700,
-    "PW307A": 1400,
-    "Trent 970-84": 1500,
-    "GE90-115B__2": 1700,
-    "GEnx-2B67/P":1500,
-    "Trent XWB-97":1500,
-    "LEAP-1B28BBJ1":1400,
-    "LEAP-1B28B2C":1400,
-}
-'''
 custom_t04 = {
     "CFM56-5B1/3": 1400,
     "CFM56-5B9/3": 1500,
