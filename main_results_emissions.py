@@ -17,7 +17,7 @@ This script keeps ONE final printed view grouped by BPR, containing:
 
 Assumptions
 -----------
-You already have these available in your project:
+Already have these available in the project:
 - define_all_engines, build_engines_config, ICAO_fuel_flow
 - define_engine
 - operating_points, simulate_operating_points
@@ -291,5 +291,5 @@ combined_summary_df = build_and_print_combined_summary_by_bpr(
     title_prefix="COMBINED LTO + EMISSIONS + MISSION SUMMARY",
 )
 
-# combined_summary_df is returned in case you want to save/export it later.
+# combined_summary_df is returned in case want to save/export it later.
 
