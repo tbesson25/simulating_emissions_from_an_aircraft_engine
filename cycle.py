@@ -3,9 +3,6 @@ from cycle_functions import *
 R = 287  # Gas constant for air in J/kg.K
 tref = 298
 
-# def run_cumpsty_cycle(M, Ta, Pa, T04, engine, Thrust=None):
-
-
 def run_cumpsty_cycle(M, Ta, Pa, T04, engine, Thrust):
     # unpack parameters
     etaD = engine["etaD"]
@@ -36,8 +33,6 @@ def run_cumpsty_cycle(M, Ta, Pa, T04, engine, Thrust):
     BPR = engine["BPR"]
 
     A = engine["A"]
-    # jai suppr les A4, A9, A19
-
     LCV = engine["LCV"]
 
     results = {}
@@ -55,13 +50,10 @@ def run_cumpsty_cycle(M, Ta, Pa, T04, engine, Thrust):
     P02_ref = 101325
     teta = T02 / T02_ref
     delta = P02 / P02_ref
-    direct_air_flow_corrected = direct_air_flow * (teta**0.5) / delta
     results["T02"] = T02
     results["P02"] = P02
     results["u"] = u
-    # direct_air_flow = direct_air_flow_corrected
     results["direct_air_flow"] = direct_air_flow
-    # results["direct_air_flow_corrected"] = direct_air_flow_corrected
 
     # Station 13 - Bypass stream leaving the fan
     T013 = calculate_stagnation_temperature(etaF, gammaF, T02, FPR)
@@ -74,7 +66,6 @@ def run_cumpsty_cycle(M, Ta, Pa, T04, engine, Thrust):
     results["deltaT_bystream"] = deltaT_bystream
 
     # Station 23 - Leaving booster
-    T023 = calculate_stagnation_temperature(etaC, gammaC, T02, FBPR)
     P023 = P02 * FBPR
     T023 = calculate_stagnation_temperature_polytropic_compressor(
         gammaC, etaPC, T02, P02, P023
@@ -87,7 +78,6 @@ def run_cumpsty_cycle(M, Ta, Pa, T04, engine, Thrust):
     # Station 3 - Leaving HPC
     etaPC = etaC
     HPCPR = CPR / FBPR
-    T03 = calculate_stagnation_temperature(etaPC, gammaC, T023, HPCPR)
     P03 = P02 * CPR
     T03 = calculate_stagnation_temperature_polytropic_compressor(
         gammaC, etaPC, T023, P023, P03
@@ -107,16 +97,10 @@ def run_cumpsty_cycle(M, Ta, Pa, T04, engine, Thrust):
 
     # Fuel-air ratio
     f_cumpsty = (Cp * (T04 - T03)) / LCV
-    #f_cumpsty = (Cpt *T04 - Cpc*T03) / (LCV)
-    f_cumpsty_t04min = Cp * (T04min - T03) / LCV
-    # f_cumpsty = (Cpt*(T04-tref)-Cpc*(T03-tref))/(LCV-Cpt*(T04-tref))
-
     results["f_cumpsty"] = f_cumpsty
-    results["f_cumpsty_t04min"] = f_cumpsty_t04min
 
     # Station 45 - Leaving HPT
     T045 = T04 - (Cpc / Cpt) * (T03 - T023)
-    P045 = calculate_stagnation_pressure(1 / etaT, gammaT, P04, T04, T045)
     P045 = calculate_stagnation_pressure_polytropic_turbine(
         gammaT, etaT, P04, T04, T045
     )
@@ -133,7 +117,6 @@ def run_cumpsty_cycle(M, Ta, Pa, T04, engine, Thrust):
 
     # Station 5 - Leaving LPT
     T05 = T045 - (Cpc / Cpt) * (T023 - T02) - (Cp / Cpt) * BPR * (T013 - T02)
-    P05 = calculate_stagnation_pressure(1 / etaT, gammaT, P045, T045, T05)
     P05 = calculate_stagnation_pressure_polytropic_turbine(
         gammaT, etaPT, P045, T045, T05
     )
