@@ -1,11 +1,5 @@
 """Patch data for missing higher-bypass turbofans in the same `icao_data` format.
 
-Rule applied:
-- If repeated rows have the same engine name AND same (bpr, opr, rated_thrust_kN),
-  keep only one.
-- If repeated rows have the same engine name but different (bpr, opr, rated_thrust_kN),
-  keep them as separate entries with suffixes like __2, __3, ...
-
 This file is intended to be merged into an existing `icao_data` dictionary.
 """
 
