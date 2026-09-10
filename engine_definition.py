@@ -1,6 +1,5 @@
-"""Ready-to-paste engine definitions and usage helpers.
-
-This file gives you:
+"""
+This file gives:
 1. define_all_engines(define_engine): returns a dictionary of engine objects
    keyed by ICAO engine name.
 2. build_engines_config(engine_objects, default_conditions=None, t04_map=None):
@@ -777,53 +776,3 @@ def compute_lto_fuel_burn_percent_difference(LTO_results, operating_points, icao
 def lto_fuel_burn_percent_difference_df(LTO_results, operating_points, icao_fuel_flow=None):
     differences = compute_lto_fuel_burn_percent_difference(LTO_results, operating_points, icao_fuel_flow)
     return pd.DataFrame(differences)
-
-
-# -----------------------------------------------------------------------------
-# Example usage
-# -----------------------------------------------------------------------------
-EXAMPLE_USAGE = r'''
-from your_engine_module import define_engine
-from all_engine_definitions_and_usage import (
-    define_all_engines,
-    build_engines_config,
-    ICAO_fuel_flow,
-    lto_fuel_burn_percent_difference_df,
-)
-
-# 1) Build all engine objects automatically
-all_engine_objects = define_all_engines(define_engine)
-
-# 2) Optionally override T04 for selected engines
-custom_t04 = {
-    "CFM56-5B1/3": 1400,
-    "CFM56-7B20E": 1400,
-    "GE90-115B": 1700,
-    "PW307A": 1200,
-    "Trent 970-84": 1700,
-}
-
-# 3) Build the same `engines = {...}` structure you already use
-engines = build_engines_config(all_engine_objects, t04_map=custom_t04)
-
-# 4) Run your model and get LTO_results exactly as before
-# LTO_results = ...
-# operating_points = ...
-
-# 5) Compare against ICAO using the exact same fuel-burn logic pattern
-comparison_df = lto_fuel_burn_percent_difference_df(
-    LTO_results,
-    operating_points,
-    ICAO_fuel_flow,
-)
-
-print("\n")
-print("=" * 90)
-print("LTO FUEL BURN PERCENTAGE DIFFERENCE FROM ICAO")
-print("=" * 90)
-print(
-    comparison_df.to_string(
-        float_format=lambda x: "None" if pd.isna(x) else f"{x:+.2f}%"
-    )
-)
-'''
