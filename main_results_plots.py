@@ -79,7 +79,7 @@ engines = build_engines_config(all_engine_objects, t04_map=custom_t04)
 # ============================================================
 from operating_points import operating_points
 from operating_points_simulation import simulate_operating_points
-from cumpsty_cycle import run_cumpsty_cycle
+from cycle import run_cumpsty_cycle
 from engine_areas import calculate_engine_areas
 
 
