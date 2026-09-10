@@ -67,7 +67,7 @@ These modules contain helper functions used to process, organise and visualise t
 
 ### Requirements
 
-The code requires Python 3.11.14 and the packages listed in `requirements.txt`.
+The model was developed and tested using Python 3.11.14. The code requires the packages listed in `requirements.txt`.
 
 Install the required packages with:
 
