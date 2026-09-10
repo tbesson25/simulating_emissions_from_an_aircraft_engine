@@ -1,3 +1,10 @@
+"""
+Main entry point for turbofan performance simulations and result plotting.
+
+This script runs the selected engine simulations and generates the
+corresponding performance and comparison plots.
+"""
+
 from __future__ import annotations
 from fontTools.feaLib.ast import HheaField
 
