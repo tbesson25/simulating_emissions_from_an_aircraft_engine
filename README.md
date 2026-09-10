@@ -1,171 +1,66 @@
 # Turbofan Cycle Analysis and Emissions Modelling
 
-Python-based turbofan engine performance and emissions modelling framework developed as part of an MSc research project in Advanced Aeronautical Engineering at Imperial College London.
+Python code developed for an MSc research project in Advanced Aeronautical Engineering at Imperial College London.
 
-The model provides a modular framework for turbofan cycle analysis, operating-point and off-design simulations, fuel-flow prediction, emissions analysis, and comparison with ICAO reference data. Results can be analysed across multiple engine configurations and visualised through dedicated plotting and results-processing modules.
+The project focuses on turbofan cycle analysis, engine performance and off-design modelling, fuel-flow prediction, and emissions analysis. Model results are compared with available ICAO reference data and further evaluated using statistical analysis.
 
----
+## Main scripts
 
-## Project Overview
+There are three main scripts used to run the different parts of the analysis:
 
-The objective of the project is to develop a Python-based turbofan model capable of:
+* `main_results_plots.py` – runs the main engine simulations and generates the performance and comparison plots.
+* `main_results_emissions.py` – runs the emissions analysis and generates the corresponding results and plots.
+* `main_results_statistics.py` – performs the statistical analysis of the model results and reference data.
 
-* modelling turbofan thermodynamic cycles;
-* evaluating engine performance at different operating conditions;
-* performing off-design simulations;
-* estimating fuel mass flow and related performance quantities;
-* analysing aircraft-engine emissions;
-* comparing model predictions with ICAO reference data;
-* evaluating model accuracy using statistical analysis; and
-* generating plots and tables for analysis and reporting.
+The remaining Python files contain the functions, engine data and supporting calculations called by these three scripts.
 
-The code is organised into modular components for engine definition, thermodynamic calculations, operating-point simulations, off-design modelling, data handling, and results visualisation.
+## Code structure
 
----
+### Cycle model
 
-## Repository Structure
+* `cumpsty_cycle.py` – turbofan cycle calculations based on the Cumpsty approach.
+* `cycle_functions.py` – common thermodynamic and cycle calculation functions.
 
-The repository contains three main entry-point scripts:
+### Engine data
 
-| Main script                  | Purpose                                                                         |
-| ---------------------------- | ------------------------------------------------------------------------------- |
-| `main_results_plots.py`      | Main simulation and results script for generating performance results and plots |
-| `main_results_emissions.py`  | Main script for emissions-related analysis and visualisation                    |
-| `main_results_statistics.py` | Main script for statistical analysis and model validation                       |
+* `engine_definition.py` – engine definitions and configurations.
+* `engine_parameters.py` – engine design and performance parameters.
+* `engine_ICAO_data.py` – ICAO reference data.
+* `engine_ICAO_data_missing_high_BPR.py` – additional data for engines with missing high-BPR reference data.
+* `engine_missing_data_mid_bpr.py` – additional engine data for cases with missing mid-BPR data.
 
-These scripts call the supporting modules described below.
+### Operating points and off-design
 
-### Core cycle model
-
-| Module               | Purpose                                                       |
-| -------------------- | ------------------------------------------------------------- |
-| `cumpsty_cycle.py`   | Turbofan cycle calculations based on the Cumpsty approach     |
-| `cycle_functions.py` | Common thermodynamic and turbofan cycle calculation functions |
-
-### Engine definition and data
-
-| Module                                 | Purpose                                                               |
-| -------------------------------------- | --------------------------------------------------------------------- |
-| `engine_definition.py`                 | Definition and configuration of the engine models                     |
-| `engine_parameters.py`                 | Engine performance and design parameters                              |
-| `engine_ICAO_data.py`                  | ICAO reference engine data                                            |
-| `engine_ICAO_data_missing_high_BPR.py` | Additional ICAO/reference data for engines with missing high-BPR data |
-| `engine_missing_data_mid_bpr.py`       | Additional engine data for cases with missing mid-BPR data            |
-
-### Operating-point simulations
-
-| Module                           | Purpose                                                        |
-| -------------------------------- | -------------------------------------------------------------- |
-| `operating_points.py`            | Definition of engine operating points                          |
-| `operating_points_simulation.py` | Simulation of engine performance at specified operating points |
-| `atmosphere.py`                  | Atmospheric property calculations                              |
-
-### Off-design modelling
-
-| Module                                          | Purpose                                                                                          |
-| ----------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| `off_design_simulation_simultaneous_FPR_T04.py` | Main off-design simulation involving simultaneous FPR and turbine inlet temperature calculations |
-| `off_design_simultaneous_solver.py`             | Numerical solver used within the off-design calculation                                          |
-| `off_design.py`                                 | Supporting off-design thermodynamic calculations                                                 |
-
-### Engine geometry
-
-| Module            | Purpose                                                              |
-| ----------------- | -------------------------------------------------------------------- |
-| `engine_areas.py` | Calculation of engine flow areas and associated geometric quantities |
+* `operating_points.py` – definition of the operating points used in the simulations.
+* `operating_points_simulation.py` – operating-point simulations.
+* `atmosphere.py` – atmospheric calculations.
+* `off_design_simulation_simultaneous_FPR_T04.py` – off-design simulation with simultaneous FPR and T04 calculations.
+* `off_design_simultaneous_solver.py` – numerical solver used for the off-design calculations.
+* `off_design.py` – supporting off-design calculations.
+* `engine_areas.py` – engine flow-area calculations.
 
 ### Results and visualisation
 
-| Module                                      | Purpose                                               |
-| ------------------------------------------- | ----------------------------------------------------- |
-| `results_multi_engine_emissions_helpers.py` | Helper functions for multi-engine emissions results   |
-| `results_mission_helpers.py`                | Helper functions for mission-level results            |
-| `results_mission_emissions_helpers.py`      | Helper functions for mission-level emissions analysis |
-| `results_table_helpers_all.py`              | Helper functions for generating results tables        |
+* `results_multi_engine_emissions_helpers.py`
+* `results_mission_helpers.py`
+* `results_mission_emissions_helpers.py`
+* `results_table_helpers_all.py`
 
----
+These modules contain helper functions used to process, organise and visualise the simulation results.
 
-## Code Dependency
-
-The three main scripts act as the primary entry points to the model.
-
-A simplified representation of the code structure is:
-
-```text
-                         ┌──────────────────────────────┐
-                         │       MAIN ENTRY POINTS      │
-                         └──────────────────────────────┘
-                                      │
-                ┌─────────────────────┼─────────────────────┐
-                │                     │                     │
-                ▼                     ▼                     ▼
-    main_results_plots.py   main_results_emissions.py   main_results_statistics.py
-                │                     │                     │
-                └─────────────────────┼─────────────────────┘
-                                      │
-                                      ▼
-                         ┌────────────────────────┐
-                         │   Simulation Modules   │
-                         ├────────────────────────┤
-                         │ operating_points      │
-                         │ operating_points_      │
-                         │ simulation             │
-                         │ off_design             │
-                         │ atmosphere             │
-                         │ engine_areas           │
-                         └────────────┬───────────┘
-                                      │
-                                      ▼
-                         ┌────────────────────────┐
-                         │   Cycle Model          │
-                         ├────────────────────────┤
-                         │ cumpsty_cycle          │
-                         │ cycle_functions        │
-                         └────────────┬───────────┘
-                                      │
-                                      ▼
-                         ┌────────────────────────┐
-                         │ Engine Definitions &   │
-                         │ Reference Data         │
-                         ├────────────────────────┤
-                         │ engine_definition      │
-                         │ engine_parameters      │
-                         │ engine_ICAO_data       │
-                         └────────────────────────┘
-                                      │
-                                      ▼
-                         ┌────────────────────────┐
-                         │ Results & Visualisation│
-                         ├────────────────────────┤
-                         │ results_*_helpers      │
-                         └────────────────────────┘
-```
-
----
-
-## Installation
+## How to run
 
 ### Requirements
 
-The model requires Python 3.x and the Python packages listed in:
+The code requires Python 3.x and the packages listed in `requirements.txt`.
 
-```text
-requirements.txt
-```
-
-Install the dependencies using:
+Install the required packages with:
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-## Running the Model
-
-The repository has three main execution scripts.
-
-### 1. Performance simulations and plots
+### Main results and plots
 
 Run:
 
@@ -173,9 +68,7 @@ Run:
 python main_results_plots.py
 ```
 
-This is the main entry point for running the performance simulations and generating the associated plots and results.
-
-### 2. Emissions analysis
+### Emissions analysis
 
 Run:
 
@@ -183,9 +76,7 @@ Run:
 python main_results_emissions.py
 ```
 
-This runs the emissions-related calculations and generates the corresponding results and visualisations.
-
-### 3. Statistical analysis
+### Statistical analysis
 
 Run:
 
@@ -193,134 +84,45 @@ Run:
 python main_results_statistics.py
 ```
 
-This performs the statistical analysis used to evaluate the model results and their agreement with the reference data.
+The engine configurations, operating points and other model inputs are defined in the corresponding Python modules.
 
----
+## Model workflow
 
-## Model Workflow
-
-The general computational workflow is:
+The general workflow of the model is:
 
 ```text
-Engine definition
-       ↓
-Engine parameters and reference data
-       ↓
+Engine definition and parameters
+            ↓
 Operating-point definition
-       ↓
+            ↓
 Atmospheric conditions
-       ↓
+            ↓
 Turbofan cycle calculation
-       ↓
+            ↓
 Performance calculation
-       ↓
-Off-design simulation (where applicable)
-       ↓
-Fuel-flow and emissions calculations
-       ↓
-Comparison with reference data
-       ↓
-Results processing
-       ↓
-Plots, tables and statistical analysis
+            ↓
+Off-design simulation
+            ↓
+Fuel-flow and emissions analysis
+            ↓
+Comparison with ICAO reference data
+            ↓
+Results, plots and statistical analysis
 ```
 
----
-
-## Model Components
-
-### Turbofan cycle analysis
-
-The model includes thermodynamic calculations for the main turbofan engine stations and components, including the fan, compressor, combustor, turbines and nozzles.
-
-The cycle model uses the relevant thermodynamic and component performance parameters to calculate engine performance quantities under the specified operating conditions.
-
-### Operating-point analysis
-
-The model can evaluate engine performance at defined operating points representing different flight or engine conditions.
-
-### Off-design analysis
-
-An off-design modelling framework is included to evaluate engine behaviour away from the design condition.
-
-The off-design calculation includes a simultaneous solution involving fan pressure ratio and turbine inlet temperature, together with the associated numerical solver.
-
-### Emissions analysis
-
-The model estimates emissions-related quantities and allows the results to be compared with available ICAO reference data.
-
-### Statistical analysis
-
-Statistical analysis is used to quantify the agreement between model predictions and reference data.
-
----
-
-## Reference Data
-
-The repository contains engine and ICAO reference datasets used for model development and validation.
-
-Where reference data are unavailable, additional engine data or assumptions may be required. These cases are handled through dedicated data modules.
-
-The assumptions and data sources used in the model are described in greater detail in the associated MSc project report.
-
----
+Not every step is necessarily used by every analysis script.
 
 ## Results
 
-The model produces:
+The code produces engine performance and fuel-flow results, emissions-related results, comparisons with ICAO reference data, mission-level results, plots, tables and statistical analysis.
 
-* engine performance results;
-* fuel-flow predictions;
-* emissions-related results;
-* comparisons with ICAO reference data;
-* multi-engine comparisons;
-* mission-level results;
-* statistical validation metrics;
-* plots; and
-* results tables.
+The exact results produced depend on the main script being run and the selected engine configurations and operating conditions.
 
-The `results_*_helpers.py` modules provide supporting functions for processing and visualising these results.
+## Project context
 
----
+This code was developed as part of an MSc research project in Advanced Aeronautical Engineering at Imperial College London.
 
-## Reproducibility
-
-To reproduce the main analyses:
-
-1. Clone or download this repository.
-2. Install the dependencies listed in `requirements.txt`.
-3. Run the relevant main script:
-
-   ```bash
-   python main_results_plots.py
-   ```
-
-   or
-
-   ```bash
-   python main_results_emissions.py
-   ```
-
-   or
-
-   ```bash
-   python main_results_statistics.py
-   ```
-4. The resulting simulations, plots and statistical analyses can then be examined or further processed.
-
-Specific engine selections, operating conditions and modelling assumptions are defined within the corresponding configuration and data modules.
-
----
-
-## Project Context
-
-This repository contains code developed for an MSc research project in Advanced Aeronautical Engineering at Imperial College London.
-
-The project focuses on turbofan engine performance and emissions modelling, with particular emphasis on the development of a Python-based computational framework and validation against available reference data.
-
-For a detailed description of the theoretical background, modelling assumptions, methodology and results, please refer to the associated project report.
-
----
+For the theoretical background, modelling assumptions, methodology and detailed discussion of the results, please refer to the associated MSc project report.
 
 ## Author
 
@@ -328,9 +130,3 @@ For a detailed description of the theoretical background, modelling assumptions,
 
 MSc Advanced Aeronautical Engineering
 Imperial College London
-
----
-
-## Disclaimer
-
-This software was developed for academic and research purposes. Engine parameters, reference data and modelling assumptions may rely on publicly available information and engineering approximations. The results should therefore not be interpreted as representing proprietary engine models or manufacturer-certified performance data.
