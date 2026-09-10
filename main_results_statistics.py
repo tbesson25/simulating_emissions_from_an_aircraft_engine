@@ -1,3 +1,10 @@
+"""
+Main entry point for statistical analysis of model results.
+
+This script evaluates the agreement between model predictions
+and reference data using the selected statistical metrics.
+"""
+
 """Final single-workflow script for BPR-grouped fuel-burn and emissions summaries.
 
 This script keeps ONE final printed view grouped by BPR, containing:
