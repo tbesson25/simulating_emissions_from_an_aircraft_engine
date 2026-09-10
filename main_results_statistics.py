@@ -21,7 +21,7 @@ You already have these available in your project:
 - define_all_engines, build_engines_config, ICAO_fuel_flow
 - define_engine
 - operating_points, simulate_operating_points
-- run_cumpsty_cycle
+- run_cycle
 - calculate_engine_areas
 - simulate3_off_design_point
 - icao_data
@@ -110,7 +110,7 @@ engines = build_engines_config(all_engine_objects, t04_map=custom_t04)
 # ============================================================
 from operating_points import operating_points
 from operating_points_simulation import simulate_operating_points
-from cumpsty_cycle import run_cumpsty_cycle
+from cycle import run_cumpsty_cycle
 from engine_areas import calculate_engine_areas
 
 
