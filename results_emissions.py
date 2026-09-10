@@ -93,7 +93,7 @@ custom_t04 = {
 }
 engines = build_engines_config(all_engine_objects, t04_map=custom_t04)
 
-# Select only the engines to simulate
+# Select only the engines to simulate (Remove lines 97-107 if want to see all engines)
 selected_engines = [
     "CFM56-5B1/3",
     "GE90-115B",
